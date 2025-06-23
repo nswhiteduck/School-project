@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hope & Healing Project | Support for Domestic Violence & Addiction</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom styles to apply the Inter font */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* A very light gray for the body background */
+        }
+        /* Style for the hero section background image */
+        .hero-bg {
+            background-image: url('https://placehold.co/1600x900/a7d8de/ffffff?text=');
+            background-size: cover;
+            background-position: center;
+        }
+        /* Custom modal backdrop */
+        .modal-backdrop {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        /* Loading spinner */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* NEW: Quick Exit Button Style */
+        .quick-exit {
+            position: fixed;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- NEW: Quick Exit Button -->
+    <a href="https://www.google.com/search?q=weather+toronto" class="quick-exit bg-red-600 text-white font-bold py-3 px-4 rounded-l-lg shadow-xl hover:bg-red-700 transition-colors flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-10.293a1 1 0 00-1.414-1.414L10 8.586 7.707 6.293a1 1 0 00-1.414 1.414L8.586 10l-2.293 2.293a1 1 0 101.414 1.414L10 11.414l2.293 2.293a1 1 0 001.414-1.414L11.414 10l2.293-2.293z" clip-rule="evenodd" />
+        </svg>
+        <span class="hidden sm:inline">Quick Exit</span>
+    </a>
+
+    <!-- Header & Navigation -->
+    <header id="header" class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold text-blue-800">Hope & Healing Project</a>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#cycle" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">The Cycle</a>
+                <a href="#abuse" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Is It Abuse?</a>
+                <a href="#safety-plan" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Safety Plan</a>
+                <a href="#help" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Find Help</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-600 hover:bg-gray-200 focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white">
+            <a href="#cycle" class="block py-3 px-6 text-gray-600 hover:bg-blue-50">The Cycle</a>
+            <a href="#abuse" class="block py-3 px-6 text-gray-600 hover:bg-blue-50">Is It Abuse?</a>
+            <a href="#safety-plan" class="block py-3 px-6 text-gray-600 hover:bg-blue-50">Safety Plan</a>
+            <a href="#help" class="block py-3 px-6 text-gray-600 hover:bg-blue-50">Find Help</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Home/Hero Section -->
+        <section id="home" class="hero-bg text-white">
+            <div class="bg-black/50 min-h-screen flex items-center">
+                <div class="container mx-auto px-6 text-center">
+                    <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4">Your Path to Safety and Healing Begins Here.</h1>
+                    <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8">Navigating the overwhelming cycle of domestic violence and addiction can make you feel lost and alone. You are not alone. This resource is a safe space to find clear, supportive pathways to a better future.</p>
+                    <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                        <button id="danger-button" class="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300 text-lg">
+                            I'm in Immediate Danger
+                        </button>
+                        <a href="#help" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300 text-lg">
+                            Find Help & Support Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Cycle Section -->
+        <section id="cycle" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-blue-800">Understanding the Tangled Cycle</h2>
+                    <p class="text-lg text-gray-600 mt-4 max-w-3xl mx-auto">For so many families, domestic violence and substance use are not separate problems—they are a deeply tangled crisis. One often fuels the other, creating a cycle that can feel impossible to break.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <!-- Stat Card 1 -->
+                    <div class="bg-blue-50 p-8 rounded-xl shadow-md">
+                        <div class="flex justify-center mb-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg></div>
+                        <p class="text-xl font-semibold text-gray-700">A major Canadian survey found 44% of women report experiencing some form of intimate partner violence in their lifetime.</p>
+                    </div>
+                    <!-- Stat Card 2 -->
+                    <div class="bg-blue-50 p-8 rounded-xl shadow-md">
+                         <div class="flex justify-center mb-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-blue-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z" clip-rule="evenodd" /></svg></div>
+                        <p class="text-xl font-semibold text-gray-700">Substance use is a factor in over 40% of all domestic violence cases reported to police.</p>
+                    </div>
+                    <!-- Stat Card 3 -->
+                    <div class="bg-blue-50 p-8 rounded-xl shadow-md">
+                         <div class="flex justify-center mb-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg></div>
+                        <p class="text-xl font-semibold text-gray-700">Parental substance use can dramatically increase the risk of harm to children.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Is It Abuse? Section -->
+        <section id="abuse" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-blue-800">Abuse Isn't Always Obvious. It's About Control.</h2>
+                    <p class="text-lg text-gray-600 mt-4 max-w-3xl mx-auto">Domestic abuse is a pattern of behaviour used to maintain power and control. It can be subtle, but the goal is always to diminish your independence and sense of self.</p>
+                </div>
+                <div class="max-w-4xl mx-auto">
+                    <div class="space-y-6">
+                        <div class="bg-white p-6 rounded-lg shadow-sm"><h3 class="font-bold text-xl text-blue-700">Emotional & Psychological Abuse</h3><p class="mt-2 text-gray-600">Constant criticism, name-calling, humiliation. Twisting the truth to make you feel crazy (gaslighting), denying their actions, or threatening to harm themselves if you leave.</p></div>
+                        <div class="bg-white p-6 rounded-lg shadow-sm"><h3 class="font-bold text-xl text-blue-700">Financial Abuse</h3><p class="mt-2 text-gray-600">Preventing you from working, controlling all the money, hiding financial information, or giving you a restrictive "allowance" that doesn't meet your family's needs.</p></div>
+                        <div class="bg-white p-6 rounded-lg shadow-sm"><h3 class="font-bold text-xl text-blue-700">Social Isolation & Coercion</h3><p class="mt-2 text-gray-600">Controlling who you see, monitoring your phone and social media, or preventing you from seeing family. This also includes pressuring you to use substances or sabotaging your recovery.</p></div>
+                        <div class="bg-white p-6 rounded-lg shadow-sm"><h3 class="font-bold text-xl text-red-600">Physical Abuse</h3><p class="mt-2 text-gray-600">Any form of physical harm, including pushing, slapping, choking, or restraining. If you are being physically hurt, your safety is the top priority.</p></div>
+                    </div>
+                     <p class="text-center mt-8 text-lg font-medium">If you recognize any of these patterns, please know <strong>it is not your fault</strong>. You deserve to be safe and respected.</p>
+                </div>
+
+                <!-- AI Conversation Starter -->
+                <div class="max-w-4xl mx-auto mt-16 bg-blue-50 p-8 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-bold text-blue-800 text-center">How to Ask for Help</h3>
+                    <p class="text-center text-gray-600 mt-2 mb-6">Finding the right words can be hard. Let's brainstorm some safe ways to start a conversation. This is a private tool; your data is not saved.</p>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="talkTo" class="block text-sm font-medium text-gray-700">Who do you want to talk to?</label>
+                                <select id="talkTo" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"><option>A friend</option><option>A family member</option><option>A doctor or therapist</option><option>A coworker or manager</option></select>
+                            </div>
+                             <div>
+                                <label for="situation" class="block text-sm font-medium text-gray-700">Briefly describe your situation (optional)</label>
+                                <input type="text" id="situation" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="e.g., I feel controlled and isolated">
+                            </div>
+                        </div>
+                        <button id="getStartersBtn" class="mt-6 w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"><span>✨ Get Conversation Starters</span></button>
+                    </div>
+                    <div id="startersLoader" class="hidden justify-center mt-4"><div class="loader"></div></div>
+                    <div id="startersResult" class="mt-6 hidden"></div>
+                    <p class="text-xs text-gray-500 mt-4 text-center">Disclaimer: This AI tool provides suggestions for brainstorming only and is not a substitute for professional advice. The generated text may not always be accurate or appropriate for your specific situation.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Safety Plan Section -->
+        <section id="safety-plan" class="py-20 bg-white">
+             <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-blue-800">My Safety Plan</h2>
+                    <p class="text-lg text-gray-600 mt-4 max-w-3xl mx-auto">This tool can help you brainstorm steps to increase your safety. Your answers are not saved. This is for informational purposes and is not a substitute for help from a qualified professional.</p>
+                </div>
+                <div class="max-w-4xl mx-auto bg-gray-50 p-8 rounded-xl shadow-md">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Do you have children?</label>
+                            <select id="planChildren" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"><option>Yes</option><option>No</option></select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Do you have a safe place to go?</label>
+                            <select id="planSafePlace" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"><option>Yes</option><option>No</option><option>Unsure</option></select>
+                        </div>
+                        <div class="md:col-span-2">
+                             <label class="block text-sm font-medium text-gray-700">What is your main concern right now?</label>
+                             <input type="text" id="planConcern" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="e.g., Protecting my children, physical safety, finding housing">
+                        </div>
+                    </div>
+                     <button id="getPlanBtn" class="mt-8 w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"><span>✨ Help Me Brainstorm a Safety Plan</span></button>
+                    <div id="planLoader" class="hidden justify-center mt-4"><div class="loader"></div></div>
+                    <div id="planResult" class="mt-8 hidden"></div>
+                    <p class="text-xs text-gray-500 mt-4 text-center">Disclaimer: Safety planning is complex. This AI tool is for brainstorming only. For your safety, please connect with a professional domestic violence advocate to create a detailed, personalized plan. Find one in the "Find Help" section below.</p>
+                </div>
+             </div>
+        </section>
+
+
+        <!-- Find Help Section -->
+        <section id="help" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16"><h2 class="text-4xl font-bold text-blue-800">You Have Options. You Have Support.</h2><p class="text-lg text-gray-600 mt-4 max-w-3xl mx-auto">Taking the first step is the hardest part. These resources are confidential, supportive, and ready to help you navigate your next move.</p></div>
+
+                <div class="bg-blue-600 text-white p-10 rounded-2xl shadow-xl mb-16 text-center lg:text-left flex flex-col lg:flex-row items-center gap-8">
+                     <div class="flex-shrink-0"><h3 class="text-8xl font-bold">211</h3><p class="text-2xl font-semibold">ONTARIO</p></div>
+                     <div class="flex-grow">
+                         <h3 class="text-3xl font-bold mb-2">Your Most Powerful Tool</h3>
+                         <p class="text-lg mb-6">211 is your central connection to thousands of community and social services. Find local shelters, counselling, food banks, and much more. It's free, confidential, and available 24/7.</p>
+                         <div class="flex flex-wrap justify-center lg:justify-start gap-4">
+                            <a href="https://211central.ca/" target="_blank" rel="noopener noreferrer" class="bg-white text-blue-600 font-bold py-3 px-6 rounded-lg hover:bg-blue-100 transition-colors">Visit 211 Website</a>
+                            <div class="flex items-center gap-2">
+                                 <a href="https://apps.apple.com/ca/app/211-ontario/id1504351347" target="_blank" rel="noopener noreferrer"><img src="https://placehold.co/120x40/ffffff/000000?text=App+Store" alt="Download on the App Store" class="h-10"></a>
+                                 <a href="https://play.google.com/store/apps/details?id=com.findhelp.ontario" target="_blank" rel="noopener noreferrer"><img src="https://placehold.co/135x40/ffffff/000000?text=Google+Play" alt="Get it on Google Play" class="h-10"></a>
+                            </div>
+                         </div>
+                     </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md flex flex-col"><h3 class="text-xl font-bold text-red-600 mb-2">Immediate & 24/7 Crisis Support</h3><p class="text-gray-600 mb-4 flex-grow">For immediate danger, call 911. For 24/7 counselling and emotional support, contact the Assaulted Women’s Helpline.</p><a href="tel:1-866-863-0511" class="mt-auto bg-red-500 text-white text-center font-bold py-2 px-4 rounded-lg hover:bg-red-600 transition-colors">Call 1-866-863-0511</a></div>
+                    <div class="bg-white p-6 rounded-lg shadow-md flex flex-col"><h3 class="text-xl font-bold text-blue-800 mb-2">Legal Support</h3><p class="text-gray-600 mb-4 flex-grow">If you've experienced domestic violence, you may get a free 2-hour consultation with a lawyer to understand your rights.</p><a href="https://www.legalaid.on.ca/services/domestic-abuse/" target="_blank" rel="noopener noreferrer" class="mt-auto bg-blue-500 text-white text-center font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors">Visit Legal Aid Ontario</a></div>
+                    <div class="bg-white p-6 rounded-lg shadow-md flex flex-col"><h3 class="text-xl font-bold text-blue-800 mb-2">Help with Substance Use</h3><p class="text-gray-600 mb-4 flex-grow">A national portal to find information on treatment, harm reduction, and support for substance use across Canada.</p><a href="https://www.canada.ca/en/health-canada/services/substance-use/get-help-with-substance-use.html" target="_blank" rel="noopener noreferrer" class="mt-auto bg-blue-500 text-white text-center font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors">Visit Canada.ca</a></div>
+                    <div class="bg-white p-6 rounded-lg shadow-md flex flex-col"><h3 class="text-xl font-bold text-blue-800 mb-2">Addiction & Violence Info</h3><p class="text-gray-600 mb-4 flex-grow">An excellent resource for understanding the deep connection between addiction and domestic violence.</p><a href="https://www.addictioncenter.com/addiction/domestic-violence/" target="_blank" rel="noopener noreferrer" class="mt-auto bg-blue-500 text-white text-center font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors">Visit Addiction Center</a></div>
+                    <div class="bg-white p-6 rounded-lg shadow-md flex flex-col"><h3 class="text-xl font-bold text-blue-800 mb-2">Talk4Healing</h3><p class="text-gray-600 mb-4 flex-grow">A culturally safe helpline for Indigenous women living in urban, rural, and remote communities across Ontario.</p><a href="tel:1-855-554-4325" class="mt-auto bg-blue-500 text-white text-center font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors">Call 1-855-554-HEAL</a></div>
+                    <div class="bg-blue-100 p-6 rounded-lg shadow-md flex flex-col border-l-4 border-blue-500"><h3 class="text-xl font-bold text-blue-800 mb-2">A Final Note: Integrated Care</h3><p class="text-gray-700 mb-4 flex-grow">My research showed that treating violence and addiction separately often fails families. When you reach out, don't be afraid to say, "I need support for both issues." You have the right to care that addresses your whole story.</p></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; 2025 Hope & Healing Project. This is an informational resource created for a school project and is not a substitute for professional advice.</p>
+            <p class="mt-2 text-sm text-blue-300">If you are in danger, please call 911.</p>
+        </div>
+    </footer>
+
+    <!-- Immediate Danger Modal -->
+    <div id="danger-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop hidden">
+        <div class="bg-white rounded-lg shadow-2xl max-w-lg w-full p-8 text-center">
+            <h2 class="text-3xl font-bold text-red-600 mb-4">You Are Not Alone. Help is Available.</h2>
+            <p class="text-lg text-gray-700 mb-6">If you are in immediate danger, your first step is to call 911. For urgent support and safety planning, confidential help is available 24/7.</p>
+            <div class="space-y-4">
+                 <a href="tel:911" class="block w-full bg-red-600 text-white font-bold py-4 px-6 rounded-lg text-xl hover:bg-red-700 transition-colors">Call 911 Now</a>
+                 <a href="tel:1-866-863-0511" class="block w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors">Call Assaulted Women's Helpline</a>
+            </div>
+            <button id="close-modal-button" class="mt-8 text-gray-500 hover:text-gray-700">Close Window</button>
+        </div>
+    </div>
+
+
+    <script>
+        // --- Mobile Menu Toggle ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); });
+        });
+
+        // --- Immediate Danger Modal ---
+        const dangerButton = document.getElementById('danger-button');
+        const dangerModal = document.getElementById('danger-modal');
+        const closeModalButton = document.getElementById('close-modal-button');
+        dangerButton.addEventListener('click', () => { dangerModal.classList.remove('hidden'); });
+        closeModalButton.addEventListener('click', () => { dangerModal.classList.add('hidden'); });
+        dangerModal.addEventListener('click', (event) => {
+            if (event.target === dangerModal) { dangerModal.classList.add('hidden'); }
+        });
+
+        // --- Gemini API Integration ---
+        const apiKey = ""; // Canvas will provide the key
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+        
+        // --- AI Conversation Starter ---
+        const getStartersBtn = document.getElementById('getStartersBtn');
+        const startersLoader = document.getElementById('startersLoader');
+        const startersResult = document.getElementById('startersResult');
+
+        getStartersBtn.addEventListener('click', async () => {
+            const talkTo = document.getElementById('talkTo').value;
+            const situation = document.getElementById('situation').value;
+
+            startersLoader.style.display = 'flex';
+            startersResult.classList.add('hidden');
+
+            const prompt = `Generate 3 short, safe, and gentle conversation starters for someone who needs to tell their ${talkTo.toLowerCase()} that they are in a difficult situation at home. ${situation ? `Their situation is: "${situation}".` : ''} The tone should be cautious and not use words that could cause alarm if overheard. Frame it as asking for general advice or help with stress. For example, "I've been feeling really stressed lately, do you have a minute to chat?" or "I'm going through something and I trust your perspective."`;
+            
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+                });
+                const result = await response.json();
+                
+                let text = "Sorry, I couldn't generate suggestions right now. Please try again.";
+                if (result.candidates && result.candidates[0].content && result.candidates[0].content.parts[0]) {
+                    text = result.candidates[0].content.parts[0].text;
+                }
+                
+                // Format the text into a list
+                const suggestions = text.split('\n').filter(s => s.trim() !== '' && s.length > 10).map(s => s.replace(/^\d+\.\s*/, ''));
+                let html = '<h4 class="font-bold text-lg mb-2 text-blue-800">Here are a few ideas:</h4><ul class="list-disc list-inside space-y-2 text-gray-700">';
+                suggestions.forEach(suggestion => {
+                    html += `<li class="p-3 bg-gray-100 rounded-md">${suggestion}</li>`;
+                });
+                html += '</ul>';
+                startersResult.innerHTML = html;
+
+            } catch (error) {
+                console.error("Error calling Gemini API:", error);
+                startersResult.innerHTML = '<p class="text-red-500">There was an error generating suggestions. Please check your connection and try again.</p>';
+            } finally {
+                startersLoader.style.display = 'none';
+                startersResult.classList.remove('hidden');
+            }
+        });
+
+        // --- AI Safety Plan ---
+        const getPlanBtn = document.getElementById('getPlanBtn');
+        const planLoader = document.getElementById('planLoader');
+        const planResult = document.getElementById('planResult');
+
+        getPlanBtn.addEventListener('click', async () => {
+            const hasChildren = document.getElementById('planChildren').value;
+            const safePlace = document.getElementById('planSafePlace').value;
+            const concern = document.getElementById('planConcern').value;
+            
+            planLoader.style.display = 'flex';
+            planResult.classList.add('hidden');
+
+            const prompt = `Generate a list of safety plan steps for a person in Canada. Details: They ${hasChildren === 'Yes' ? 'have children' : 'do not have children'}. When asked if they have a safe place to go, they said: "${safePlace}". Their main concern is: "${concern}". The plan should include steps for preparing to leave, what to do during an emergency, and steps for after leaving. Include suggestions for important documents to gather and people to contact. The output must be a JSON object with three keys: "preparingToLeave", "inAnEmergency", and "afterLeaving". Each key must contain an array of strings representing actionable steps.`;
+
+            const payload = {
+              contents: [{ parts: [{ text: prompt }] }],
+              generationConfig: { responseMimeType: "application/json" }
+            };
+
+            try {
+                 const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+                
+                if (result.candidates && result.candidates[0].content && result.candidates[0].content.parts[0]) {
+                    const planJson = JSON.parse(result.candidates[0].content.parts[0].text);
+                    let html = '';
+
+                    const createSection = (title, items) => {
+                        let sectionHtml = `<div class="mb-6"><h4 class="font-bold text-xl mb-3 text-blue-800 border-b-2 border-blue-200 pb-2">${title}</h4><ul class="list-disc list-inside space-y-2 text-gray-700">`;
+                        items.forEach(item => {
+                            sectionHtml += `<li class="p-3 bg-gray-100 rounded-md">${item}</li>`;
+                        });
+                        sectionHtml += '</ul></div>';
+                        return sectionHtml;
+                    }
+                    
+                    if (planJson.preparingToLeave) {
+                        html += createSection('Preparing to Leave', planJson.preparingToLeave);
+                    }
+                    if (planJson.inAnEmergency) {
+                        html += createSection('In an Emergency', planJson.inAnEmergency);
+                    }
+                    if (planJson.afterLeaving) {
+                        html += createSection('After You\'ve Left', planJson.afterLeaving);
+                    }
+                    planResult.innerHTML = html;
+
+                } else {
+                    throw new Error("Invalid response from API");
+                }
+
+            } catch(error) {
+                console.error("Error calling Gemini API for safety plan:", error);
+                planResult.innerHTML = '<p class="text-red-500">There was an error generating a plan. Please check your connection and try again.</p>';
+            } finally {
+                planLoader.style.display = 'none';
+                planResult.classList.remove('hidden');
+            }
+        });
+
+    </script>
+
+</body>
+</html>
